@@ -1,0 +1,11 @@
+name: lab04
+on: 
+  pull_request:
+    types: [opened, synchronize]
+    branches: ["main"]
+jobs:
+  echo:
+    runs-on: ububtu-latest
+    steps:
+      - run: echo "Pull request"
+    
