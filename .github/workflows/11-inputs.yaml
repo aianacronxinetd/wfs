@@ -1,0 +1,30 @@
+name: 11 - Working with Inputs
+on:
+   workflow_dispatch:
+      inputs:
+        dryrun:
+          type: boolean
+          description:  Dryrun
+          default: false
+        target:
+          default: dev
+          required: true
+          description: Environment that script will run in
+        tag:
+          type: choice
+          options:
+            - v1
+            - v2  
+            - v3
+jobs:
+   build: 
+       runs-on: ubuntu-latest
+       steps:
+           -  name: Build code
+              run: echo "This is the build step for the ${{inputs.tag}}   
+   deploy:
+        runs-on: ubuntu-latest
+        environment: ${{inputs.target}}
+        steps:
+            - name: Deploy
+              run: echo "Deploying code"
